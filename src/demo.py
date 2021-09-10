@@ -6,26 +6,32 @@ import subprocess
 import sys
 import time
 
-bot1 = subprocess.Popen("python Bot.py -p 21801 -r 0.1 -o 10", shell=True)
-bot2 = subprocess.Popen("python Bot.py -p 21800 -r 0.1 -o -15", shell=True)
-bot3 = subprocess.Popen("python Bot.py -p 20001 -r 0.1 -o 0", shell=True)
-bot4 = subprocess.Popen("python Bot.py -p 64000 -r 0.1 -o 10000", shell=True)
+bot1 = subprocess.Popen("python Bot.py -p 43400 -r 1", shell=True)
+bot2 = subprocess.Popen("python Bot.py -p 43401 -r 1", shell=True)
+bot3 = subprocess.Popen("python Bot.py -p 43402 -r 1", shell=True)
+bot4 = subprocess.Popen("python Bot.py -p 43403 -r 1", shell=True)
+bot5 = subprocess.Popen("python Bot.py -p 43404 -r 1", shell=True)
+bot6 = subprocess.Popen("python Bot.py -p 43405 -r 1", shell=True)
+bot7 = subprocess.Popen("python Bot.py -p 43406 -r 1", shell=True)
 
 def shutdown(signum, frame):
-   print '\nStopping demo...\n'
+   print '\nInicializando bots de simulacion...\n'
 
    bot1.terminate()
    bot2.terminate()
    bot3.terminate()
    bot4.terminate()
+   bot5.terminate()
+   bot6.terminate()
+   bot7.terminate()
 
-   print 'Demo stopped\n'
+   print 'Apagando bots de simulacion\n'
    sys.exit(0)
 
 if __name__ == '__main__':
    signal.signal(signal.SIGINT, shutdown)
 
-   print '\nUse Ctrl+C to stop demo at anytime\n'
+   print '\nUsar Ctrl+C para detener la simulacion\n'
 
    # keep the main thread running, can be stopped with ctrl+c
    while True:

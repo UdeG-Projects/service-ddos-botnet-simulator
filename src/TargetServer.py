@@ -41,7 +41,7 @@ def shutdown(signum, frame):
    if 'server' in globals():
       server.shutdown()
 
-   print '\nServer shut down'
+   print '\Servidor apagado'
 
    sys.exit(0)
 
@@ -50,7 +50,7 @@ Handles the Clients connecting to the Server.
 """
 class ClientRequestHandler(SocketServer.BaseRequestHandler):
    def handle(self):
-      logLine = 'Received connection request from ' + str(self.client_address)
+      logLine = 'Recibiendo peticion: ' + str(self.client_address)
       print log(logLine)
 
       # keep the connection open while data is still being sent
@@ -96,7 +96,7 @@ if __name__ == '__main__':
       parser.print_help()
       sys.exit(0)
 
-   print 'Initializing Server...\n'
+   print 'Inicializando servidor...\n'
 
    signal.signal(signal.SIGINT, shutdown)
 
@@ -117,8 +117,8 @@ if __name__ == '__main__':
    serverThread.daemon = True
    serverThread.start()
 
-   print 'Server is listening on port', port, 'in thread:', serverThread.name
-   print '\nUse Ctrl+C to stop server at anytime\n'
+   print 'Servidor de pedidos encendido en puerto', port
+   print '\nUsar Ctrl+C para detenerlo\n'
 
    # keep the main thread running, can be stopped with ctrl+c
    while True:

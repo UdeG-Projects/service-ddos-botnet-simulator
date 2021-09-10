@@ -7,6 +7,7 @@ EOF = '\n'
 MASTER_PASSPHRASE = 'gits#9sac'
 BOT_PASSPHRASE    = 'standalone'
 CODE_00 = '00' # send current time
+BOTS_FILES = 'src/bots_list.txt'
 
 """
    Receive msg from the provided connection.
@@ -59,3 +60,10 @@ Format the provided time in milliseconds to a human readable String.
 def formatTimeMS(timeMS):
    return str(datetime.datetime.fromtimestamp(float(timeMS)/1000)\
          .strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
+
+def saveBotIP(host, port):
+  print 'Guardando la ip para el Master...'
+
+  with open("src/bots_list.txt", 'a') as botsFile:
+    botsFile.write('{host}:{port}\n'.format(host=host, port=port))
+    botsFile.close()
